@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 场景1: 多参数，可以按照相应构造函数的顺序注入数据 -->
+        <bean id="userService" class="com.gghenshin2.UserService">
+            <!-- value直接注入基本类型值 -->
+            <constructor-arg  value="18"/>
+            <constructor-arg  value="赵伟风"/>
+
+            <constructor-arg  ref="userDao"/>
+        </bean>
+        <!-- 被引用类bean声明 -->
+        <bean id="userDao" class="com.gghenshin2.UserDao"/>
+
+<!--    &lt;!&ndash; 场景2: 多参数，可以按照相应构造函数的名称注入数据 &ndash;&gt;
+        <bean id="userService" class="x.y.UserService">
+            &lt;!&ndash; value直接注入基本类型值 &ndash;&gt;
+            <constructor-arg name="name" value="赵伟风"/>
+            <constructor-arg name="userDao" ref="userDao"/>
+            <constructor-arg name="age"  value="18"/>
+        </bean>
+        &lt;!&ndash; 被引用类bean声明 &ndash;&gt;
+        <bean id="userDao" class="x.y.UserDao"/>-->
+
+<!--     场景3: 多参数，可以按照相应构造函数的角标注入数据
+               index从0开始 构造函数(0,1,2....)
+        <bean id="userService" class="x.y.UserService">
+            &lt;!&ndash; value直接注入基本类型值 &ndash;&gt;
+            <constructor-arg index="1" value="赵伟风"/>
+            <constructor-arg index="2" ref="userDao"/>
+            <constructor-arg index="0"  value="18"/>
+        </bean>
+        &lt;!&ndash; 被引用类bean声明 &ndash;&gt;
+        <bean id="userDao" class="x.y.UserDao"/>-->
+
+    <bean id="movieFinder" class="com.gghenshin2.MovieFinder"/>
+    <bean id="simpleMovie" class="com.gghenshin2.SimpleMovieLister">
+        <property name="movieName" value="qwer"/>
+        <property name="movieFinder" value="asdf"/>
+    </bean>
+</beans>
