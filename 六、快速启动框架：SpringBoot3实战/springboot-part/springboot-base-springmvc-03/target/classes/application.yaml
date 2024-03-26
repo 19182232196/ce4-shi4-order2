@@ -1,0 +1,13 @@
+
+
+# springmvc相关的web配置
+# serverkey
+server:
+  port: 80 # 端口号 默认是8080
+  servlet:
+    context-path: /boot #设置项目根路径
+
+spring:
+  web:
+    resources:
+      static-locations: classpath:/webapp
